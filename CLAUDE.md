@@ -45,10 +45,13 @@ clearer, do not make it.
   feel the urge to add a third domain concept, stop — that urge is the failure mode
   of the four sibling projects and is explicitly out of scope here.
 - **Python + `uv`**, matching the sibling projects' tooling.
-- **Pin everything that can drift.** `google-adk` AND `a2a-sdk` AND pydantic pinned
-  in `pyproject.toml`; exact concrete model ids (never a `-latest` alias) in one
-  place (`.env`). Record the actual working versions in `DECISIONS.md` after the
-  iter-0 spike.
+- **Pin everything that can drift — and pin the *newest stable*.** At the iter-0
+  spike, take the latest stable `google-adk` / `a2a-sdk` / pydantic and pin them in
+  `pyproject.toml`; exact concrete model ids (never a `-latest` alias) in one place
+  (`.env`). This project is a *current*-framework-fluency signal — don't build on a
+  stale ADK, and don't follow tutorials written for older versions. After the spike:
+  no mid-project upgrades unless a real blocker forces one (record it in
+  DECISIONS.md). Record the actual working versions in `DECISIONS.md`.
 - **Tests never call the model.** pytest/CI covers pure Python only: schemas, stub
   tools, the deterministic merge, card resolution. The LLM end-to-end run is a
   manual demo, not a CI gate. No cassettes here — that's the siblings' territory.

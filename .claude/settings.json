@@ -1,0 +1,40 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make check)",
+      "Bash(make test)",
+      "Bash(make run-supplier)",
+      "Bash(make web)",
+      "Bash(make eval)",
+      "Bash(uv sync *)",
+      "Bash(uv sync)",
+      "Bash(uv add *)",
+      "Bash(uv lock *)",
+      "Bash(uv lock)",
+      "Bash(uv pip list *)",
+      "Bash(uv pip show *)",
+      "Bash(uv run pytest *)",
+      "Bash(uv run pytest)",
+      "Bash(uv run ruff *)",
+      "Bash(uv run adk web *)",
+      "Bash(uv run adk run *)",
+      "Bash(uv run adk eval *)",
+      "Bash(uv run adk api_server *)",
+      "Bash(uv run python -c *)",
+      "Bash(uv --version)",
+      "Bash(uv python list *)",
+      "Bash(curl -s *localhost*)",
+      "Bash(curl -si *localhost*)",
+      "Bash(curl -sf *localhost*)",
+      "Bash(git status *)",
+      "Bash(git status)",
+      "Bash(git diff *)",
+      "Bash(git diff)",
+      "Bash(git log *)",
+      "Bash(git show *)",
+      "Bash(git ls-files *)",
+      "Bash(mkdir -p *)",
+      "Bash(jq *)"
+    ]
+  }
+}

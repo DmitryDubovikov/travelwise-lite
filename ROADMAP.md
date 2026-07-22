@@ -5,8 +5,10 @@
 > framework», не новый столп резюме. Топология — продукт, приложение — фикстура.
 
 Источник истины по **порядку и составу**. Правила — `CLAUDE.md`, что строим —
-`SPEC.md`, почему — `DECISIONS.md`. Тонких спек и итерационных skills нет
-(решение в DECISIONS: проект меньше одной итерации authwise).
+`SPEC.md`, почему — `DECISIONS.md`. Тонкая спека итерации создаётся
+`/iterationStart N` в `specs/NN/`, закрытие — `/iterationClose N` (skills и
+ревью-агенты портированы из deskwise/authwise, адаптированы под ADK — решение
+2026-07-22, пересмотр первоначального «только ROADMAP»).
 
 Статусы: ⬜ todo · 🟦 in progress · ✅ done · ❌ отменено.
 
@@ -19,7 +21,7 @@
 
 | # | Ст. | Новое | 🧵 Красная нить | Скоуп | Verify |
 |---|---|---|---|---|---|
-| **0** | ⬜ | — *(каркас + спайк)* | Пины зафиксированы, ADK-API подтверждён до домена | uv-скелет, пины `google-adk`/`a2a-sdk`/`pydantic`, `.env.example` (ключ, model ids, порты, `SUPPLIER_CARD_URL`), Makefile; **спайк**: hello-агент → `to_a2a()` → `RemoteA2aAgent` → хоп в `adk web` на пиннутых версиях; фактические версии записаны в DECISIONS (снять `TBD`) | спайк-хоп виден; `make check` (pytest-смок, без LLM) зелёный |
+| **0** | ⬜ | — *(каркас + спайк)* | Пины зафиксированы, ADK-API подтверждён до домена | uv-скелет, пины `google-adk`/`a2a-sdk`/`pydantic` (**самое свежее stable на момент спайка**, дальше без апгрейдов — CLAUDE.md), `.env.example` (ключ, model ids, порты, `SUPPLIER_CARD_URL`), Makefile; **спайк**: hello-агент → `to_a2a()` → `RemoteA2aAgent` → хоп в `adk web` на пиннутых версиях; фактические версии записаны в DECISIONS (снять `TBD`) | спайк-хоп виден; `make check` (pytest-смок, без LLM) зелёный |
 | **1** | ⬜ | **ADK-агенты + `ParallelAgent`** | In-agent иерархия (диффер. №2) | supplier standalone: `supplier/schemas.py`, stub-tools, `SequentialAgent(ParallelAgent(flight, hotel), merge-код)`; state-ключи `flights`/`hotels`; тесты на стабы+merge (чистый Python) | локальный прогон возвращает валидный `SupplierOffer`; тесты зелёные без сети |
 | **2** | ⬜ | **A2A-сервер + agent card** | Половина A2A-границы: supplier — отдельный сервис (диффер. №1) | `make run-supplier` (`:8001`); карта генерится фреймворком и отдаётся на well-known-пути; skill `get_offer` дёргается по протоколу | `curl` карты отдаёт JSON; протокольный вызов виден в **логе supplier-процесса** |
 | **3** | ⬜ | **`RemoteA2aAgent` + `SequentialAgent`** | Вторая половина A2A: два процесса, вызов по карте, без импорта (диффер. №1) | planner: `parse` (`output_schema=TripRequest`, без tools) → `RemoteA2aAgent` (по `SUPPLIER_CARD_URL` из env) → `assemble`; `planner/schemas.py` (осознанный дубль) | e2e из двух процессов: «4 days in Lisbon in May» → собранный план; входящий запрос в логе supplier |

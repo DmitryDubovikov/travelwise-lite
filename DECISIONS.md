@@ -80,9 +80,17 @@ cards, and the protocol call between them. That's the ~1 extra day.
   (separate, higher free-tier RPM pool). ≈4 LLM calls per request against
   ~15/~30 RPM free limits — comfortable for a demo, tight for aggressive eval
   loops, which we don't run.
-- **Process: ROADMAP.md with statuses, nothing more.** No `specs/NN/` thin
-  specs, no iteration skills — the whole project is smaller than one authwise
-  iteration; the siblings' process machinery would outweigh the product.
+- **Process: the siblings' iteration machinery, ported and adapted** (revised
+  2026-07-22; the initial call was "ROADMAP only"). `/iterationStart N` /
+  `/iterationClose N` skills plus the three review agents (general-reviewer,
+  constitution-reviewer, review-auditor) are ported from deskwise/authwise and
+  adapted to the ADK stack: reviewer rubrics enforce the A2A-boundary seams and
+  the $0/free-tier contract; deskwise's "питоний аналог" learning device becomes
+  a **sibling analog** (ADK concepts explained via LangGraph/CrewAI); explainers
+  must carry an explicit "ADK vs LangGraph/CrewAI" contrast section — the
+  project's whole value is framework fluency, so the contrast is the product of
+  the docs. The RPM/RPD free-tier budget plays the role money played in the
+  siblings' AI discipline.
 - **Pinned working versions** (filled after the iter-0 spike):
   `google-adk == TBD`, `a2a-sdk == TBD`, `pydantic == TBD`, python `TBD`,
   models: `TBD` (concrete ids, never `-latest` aliases).
