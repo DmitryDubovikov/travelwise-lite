@@ -1,0 +1,24 @@
+[project]
+name = "travelwise-lite"
+version = "0.1.0"
+description = "Minimal Google ADK multi-agent demo: planner delegating to a supplier over A2A"
+requires-python = ">=3.13"
+dependencies = [
+    # Pinned at the iter-0 spike (2026-07-22); no mid-project upgrades — see CLAUDE.md
+    "google-adk[a2a]==2.5.0",
+    # http-server extra: to_a2a()'s card/JSON-RPC routes need sse-starlette,
+    # which plain a2a-sdk doesn't pull (found by the iter-0 spike)
+    "a2a-sdk[http-server]==1.1.2",
+    "pydantic==2.13.4",
+]
+
+[dependency-groups]
+dev = [
+    "pytest==8.4.2",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+# Project root on sys.path so tests import `spike` (later `planner`/`supplier`)
+# without an installable package.
+pythonpath = ["."]

@@ -91,9 +91,22 @@ cards, and the protocol call between them. That's the ~1 extra day.
   project's whole value is framework fluency, so the contrast is the product of
   the docs. The RPM/RPD free-tier budget plays the role money played in the
   siblings' AI discipline.
-- **Pinned working versions** (filled after the iter-0 spike):
-  `google-adk == TBD`, `a2a-sdk == TBD`, `pydantic == TBD`, python `TBD`,
-  models: `TBD` (concrete ids, never `-latest` aliases).
+- **Pinned working versions** (confirmed by the iter-0 spike, 2026-07-22):
+  `google-adk[a2a] == 2.5.0`, `a2a-sdk[http-server] == 1.1.2`
+  (the `http-server` extra is required: `to_a2a()`'s card/JSON-RPC routes import
+  `sse-starlette`, which plain `a2a-sdk` doesn't pull — found by the spike),
+  `pydantic == 2.13.4`, python `3.13`,
+  models: `gemini-3.6-flash` / `gemini-3.5-flash-lite` (concrete stable ids in
+  `.env`; live-verified with a keyed run at the iter-0 demo smoke — the
+  initially pinned `gemini-2.5-flash` turned out to be closed to new API users
+  with a 404, so "newest stable" was re-read from the live models list).
+  Spike findings: ADK's A2A surface (`to_a2a`, `RemoteA2aAgent`) is marked
+  EXPERIMENTAL and warns loudly — expected, harmless, and another reason the
+  versions stay frozen; the generated card (a2a 1.x schema) is served at
+  `/.well-known/agent-card.json` with the endpoint under `supportedInterfaces`.
+  Serving via `to_a2a()` + uvicorn rather than `adk api_server --a2a`: the CLI
+  mounts cards under a per-agent prefix, while `to_a2a()` serves the card at the
+  root well-known path — which is what `SUPPLIER_CARD_URL` assumes.
 
 ## Relation to the sibling -lite projects
 

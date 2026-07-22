@@ -3,6 +3,10 @@ __pycache__/
 *.py[cod]
 .venv/
 *.egg-info/
+.pytest_cache/
+
+# ADK runtime (session dbs from adk web / adk run)
+.adk/
 
 # Env / secrets
 .env
