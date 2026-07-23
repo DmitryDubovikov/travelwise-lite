@@ -2,18 +2,14 @@
 
 import importlib.metadata
 import tomllib
-from pathlib import Path
 
 import google.adk
 import pydantic
-from dotenv import dotenv_values
 from google.adk.a2a.utils.agent_to_a2a import to_a2a
 from google.adk.agents.remote_a2a_agent import AGENT_CARD_WELL_KNOWN_PATH
 from starlette.applications import Starlette
 
-ROOT = Path(__file__).resolve().parents[1]
-# Same parser ADK itself uses to load .env at runtime.
-ENV = dotenv_values(ROOT / ".env.example")
+from tests.conftest import ENV, ROOT
 
 
 def _pinned(package: str) -> str:

@@ -146,7 +146,7 @@ the UI.
 - [ ] A2A — two processes, supplier card served at the well-known path, protocol
       call between them; hop proven in the supplier log
 - [ ] Sequential orchestrator — planner/agent.py
-- [ ] Parallel orchestrator — supplier/agent.py (inside its SequentialAgent shell)
+- [x] Parallel orchestrator — supplier/agent.py (inside its SequentialAgent shell)
 - [ ] Built-in tooling — `adk web` runs both; optional `adk eval`
 - [ ] $0 — Flash/Flash-Lite + free key; stubs mean most runs barely need the model
 
